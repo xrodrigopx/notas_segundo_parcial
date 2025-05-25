@@ -1,0 +1,170 @@
+ ██████╗ ██████╗ ███████╗███╗   ██╗    ██╗  ██╗ █████╗ ███████╗██╗  ██╗██╗███╗   ██╗ ██████╗ 
+██╔═══██╗██╔══██╗██╔════╝████╗  ██║    ██║  ██║██╔══██╗██╔════╝██║  ██║██║████╗  ██║██╔════╝ 
+██║   ██║██████╔╝█████╗  ██╔██╗ ██║    ███████║███████║███████╗███████║██║██╔██╗ ██║██║  ███╗
+██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║    ██╔══██║██╔══██║╚════██║██╔══██║██║██║╚██╗██║██║   ██║
+╚██████╔╝██║     ███████╗██║ ╚████║    ██║  ██║██║  ██║███████║██║  ██║██║██║ ╚████║╚██████╔╝
+ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+                                                                                                                                                                                                                                         
+
+// ------------------------------------//
+
+		// PSEUDO PARA INSERTAR EN OPEN HASHING //
+// no contempla que haya colisiones
+// se parte de una tabla vacia
+// se entiende que todas las claves son diferentes y el resultado de h es siempre diferente.
+
+// ------------------------------------//
+
+TTablaHASH.Insertar(clave k)
+T indica el vector de claves
+i = 0 									// comienzo desde el indice 0 de la tabla
+	repetir 							// recursion
+	j = h(k,i) 							// resultado de h, almacenado en j, que es la funcion de hash
+	si vacio(T[j]) entonces 			// si el indice en el que estoy parado es vacio
+		T[j] = k, devolver j, salir 	// asigno el valor del resultado de la tabla a ese indice
+	sino, i = i + 1  					// sino, paso al siguiente indice
+	hasta que i = m 					// cuando ya no tengo mas indices, siendo m el ultimo valor de la tabla
+	error “sobrecarga de tabla de hash 	//cuando ya recorri y no tengo indices vacios
+
+// ------------------------------------//
+		// JAVA PARA INSERTAR EN OPEN HASHING //
+
+		// SE PARTE DE UNA TABLA QUE ESTA VACIA
+		// ESTO NO TIENE CONTEMPLADO SI HAY COLISIONES
+		// puedo inicializar la tabla si no esta inicializada, la tabla vacia por supuesto
+
+// ------------------------------------//
+
+
+public class TablaHash {
+    private Integer[] tabla; 			// array de claves (tabla hash)
+    private int m; 						// Tamaño de la tabla
+
+    public TablaHash(int tamano) {
+        this.m = tamano;
+        this.tabla = new Integer[m]; 	// Inicializamos la tabla con nulls (vacía)
+
+    }
+}
+
+// ------------------------------------//
+
+	// FUNCION HASH DE EJEMPLO PARA OPEN HASHING //
+
+// ------------------------------------//
+
+// Función hash doble con sonda lineal como ejemplo (puedes cambiar h(k, i) según el método que uses)
+private int h(int clave, int i) {
+    // Ejemplo de función de sonda lineal: (hash_base + i) % m
+    int hash_base = clave % m;
+    return (hash_base + i) % m;
+}
+
+// ------------------------------------//
+
+// METODO INSERTAR PARA OPEN HASHING
+// se parte de una tabla vacia
+
+// ------------------------------------//
+/**
+ * Inserta una clave en la tabla hash
+ * @param clave La clave que se desea insertar
+ * @return La posición j donde se insertó la clave
+ * @throws RuntimeException si la tabla está llena
+ */
+public int insertar(int clave) {
+    int i = 0;
+
+    								
+    while (i < m) {					// Intentamos insertar la clave en la tabla, como máximo m intentos
+        int j = h(clave, i); 		// Calculamos la posición j con la función hash
+        if (tabla[j] == null) {		// si la posicion esta vacia
+            tabla[j] = clave;		// insertamos la clave
+            return j; 				// Devolvemos la posición donde se insertó
+        } else {					// si ya hay una clave 
+            i++;					// aumentamos i y reintentamos
+        }
+    }
+
+    // Si no encontramos espacio después de m intentos, lanzamos un error
+    throw new RuntimeException("Error: sobrecarga de tabla de hash");
+}
+
+// Método para imprimir la tabla (opcional, útil para pruebas)
+public void imprimir() {
+    for (int i = 0; i < m; i++) {
+        System.out.println("Posición " + i + ": " + tabla[i]);
+
+// ------------------------------------//
+
+// PSEUDO BUSCAR EN OPEN HASHING
+
+// ------------------------------------//
+
+TTablaHASH.Buscar(clave k)
+// T indica el vector de claves
+i = 0 									// comienzo a buscar desde el inicio de la tabla
+repetir 								// recursion
+	j = h(k,i) 							// almaceno el valor del resultado del hash en j
+	si T[j] = k entonces 				// si el valor de la clave en el indice es k (significa que la comparacion es k=k)
+	devolver j, salir 					// devuelvo el valor 
+	sino, i = i + 1 					// si no, paso al siguiente indice
+	hasta que vacio(T[j]) o i = m  		// hasta encontrar el valor que estoy buscando, o hasta llegar al final de la tabla
+	devolver nulo 						// devuelvo nulo o puedo imprimir "no se encontro el valor"
+
+// ------------------------------------//
+
+		// JAVA PARA BUSCAR EN OPEN HASHING
+	// SE ENTIENDE QUE LA TABLA ESTA LLENA
+
+// ------------------------------------//
+
+public int buscar(int clave) {
+    int i = 0;
+    while (i < m) {						// Repetimos mientras no encontremos una celda vacía o se acaben los intentos
+        int j = h(clave, i); 			// Calculamos la posición usando la función de hash y lo almacenamos en j
+        if (tabla[j] == null) {			// Si la celda está vacía, la clave no está en la tabla
+            return -1;
+        }
+        if (tabla[j] == clave) {		// Si encontramos la clave
+            return j;					// devolvemos su posición
+        }
+        i++;							// Si no es la clave y la celda no está vacía, seguimos buscando
+    }
+    return -1; 							// Si terminamos el ciclo sin encontrar la clave, devolvemos -1
+}
+
+// --- PSEUDO PARA BUSCAR E IMPRIMIR CUANTAS COMPARACIONES REALICE -- //
+
+TTablaHASH.Buscar(clave k)
+// T indica el vector de claves
+i = 0 									// comienzo a buscar desde el inicio de la tabla
+x = 0									// contador de comparaciones
+repetir 								// recursion
+	j = h(k,i) 							// almaceno el valor del resultado del hash en j
+	si T[j] = k entonces 				// si el valor de la clave en el indice es k (significa que la comparacion es k=k)
+	x ++								// aumento x
+	devolver j && x, salir 				// devuelvo el valor y cuantas comparaciones realice para encontrarlo
+	sino, i = i + 1 					// si no, paso al siguiente indice
+	hasta que vacio(T[j]) o i = m  		// hasta encontrar el valor que estoy buscando, o hasta llegar al final de la tabla
+	devolver -1 && x 					// devuelvo -1 y cuantas comparaciones realice en total, seria el tamano del array pero bueno.
+
+// --- PSEUDO PARA insertar E IMPRIMIR CUANTAS COMPARACIONES REALICE -- //
+TTablaHASH.Insertar(clave k)
+T indica el vector de claves
+i = 0 										// comienzo desde el indice 0 de la tabla
+x = 0										// contador de comparaciones
+	repetir 								// recursion
+	j = h(k,i) 								// resultado de h, almacenado en j, que es la funcion de hash
+	si vacio(T[j]) entonces 				// si el indice en el que estoy parado es vacio
+		x ++								// aumento el valor de x primero
+		T[j] = k, devolver j && x, salir 	// asigno el valor del resultado de la tabla a ese indice y muestro cuantas comparaciones hice
+	sino, i = i + 1  						// sino, paso al siguiente indice
+	x ++									// aumento x
+	hasta que i = m 						// cuando ya no tengo mas indices, siendo m el ultimo valor de la tabla
+	devolver x								// devuelvo cuantas comparaciones realice
+	error "sobrecarga de tabla de hash" 	// cuando ya recorri y no tengo indices vacios
+
+
+
+
