@@ -4,12 +4,24 @@
 ██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║    ██╔══██║██╔══██║╚════██║██╔══██║██║██║╚██╗██║██║   ██║
 ╚██████╔╝██║     ███████╗██║ ╚████║    ██║  ██║██║  ██║███████║██║  ██║██║██║ ╚████║╚██████╔╝
  ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
-                                                                                                                                                                                                                                         
+
+
+
+// COMO DEFINIR EL TAMAÑO DEL ARRAY SI NO ESTA CREADO?
+/*
+- primero ves cuantos datos son, si son pocos, vas por orden lineal, si son muchos vas por orden cuadratico.
+ - dependiendo el orden que elijas, sera el tamaño de la tabla y como vas a buscar e insertar, etc.
+
+// ORDEN LINEAL
+ - cantidad de claves / factor de carga (k/0.9) > esto te da el tamaño del array
+
+// ORDEN CUADRATICO
+ - cantidad de claves / factor de carga (k/0.5) > esto te da un numero, si es primo usas ese, si no es primo, contas desde ese numero hasta dar con uno y usas ese
+*/
 
 // ------------------------------------//
 
-		// PSEUDO PARA INSERTAR EN OPEN HASHING //
-// no contempla que haya colisiones
+		// PSEUDO PARA INSERTAR EN OPEN HASHING CON ORDEN LINEAL //
 // se parte de una tabla vacia
 // se entiende que todas las claves son diferentes y el resultado de h es siempre diferente.
 
@@ -27,13 +39,15 @@ i = 0 									// comienzo desde el indice 0 de la tabla
 	error “sobrecarga de tabla de hash 	//cuando ya recorri y no tengo indices vacios
 
 // ------------------------------------//
-		// JAVA PARA INSERTAR EN OPEN HASHING //
+		// JAVA PARA INSERTAR EN OPEN HASHING CON ORDEN LINEAL //
 
 		// SE PARTE DE UNA TABLA QUE ESTA VACIA
 		// ESTO NO TIENE CONTEMPLADO SI HAY COLISIONES
 		// puedo inicializar la tabla si no esta inicializada, la tabla vacia por supuesto
 
 // ------------------------------------//
+
+	// METODO PARA CREAR LA TABLA 
 
 
 public class TablaHash {
@@ -62,7 +76,7 @@ private int h(int clave, int i) {
 
 // ------------------------------------//
 
-// METODO INSERTAR PARA OPEN HASHING
+// METODO INSERTAR PARA OPEN HASHING CON ORDEN LINEAL
 // se parte de una tabla vacia
 
 // ------------------------------------//
@@ -97,7 +111,7 @@ public void imprimir() {
 
 // ------------------------------------//
 
-// PSEUDO BUSCAR EN OPEN HASHING
+// PSEUDO BUSCAR EN OPEN HASHING CON ORDEN LINEAL
 
 // ------------------------------------//
 
@@ -114,7 +128,7 @@ repetir 								// recursion
 
 // ------------------------------------//
 
-		// JAVA PARA BUSCAR EN OPEN HASHING
+		// JAVA PARA BUSCAR EN OPEN HASHING CON ORDEN LINEAL
 	// SE ENTIENDE QUE LA TABLA ESTA LLENA
 
 // ------------------------------------//
