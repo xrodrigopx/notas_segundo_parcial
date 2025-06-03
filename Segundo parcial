@@ -182,3 +182,325 @@ x = 0										// contador de comparaciones
 
 
 
+
+
+
+██████╗ ██╗     ██╗██╗  ██╗███████╗████████╗██████╗  █████╗     ██╗███████╗    ██████╗  █████╗ ██╗███╗   ██╗
+██╔══██╗██║     ██║██║ ██╔╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗    ██║██╔════╝    ██╔══██╗██╔══██╗██║████╗  ██║
+██║  ██║██║     ██║█████╔╝ ███████╗   ██║   ██████╔╝███████║    ██║███████╗    ██████╔╝███████║██║██╔██╗ ██║
+██║  ██║██║██   ██║██╔═██╗ ╚════██║   ██║   ██╔══██╗██╔══██║    ██║╚════██║    ██╔═══╝ ██╔══██║██║██║╚██╗██║
+██████╔╝██║╚█████╔╝██║  ██╗███████║   ██║   ██║  ██║██║  ██║    ██║███████║    ██║     ██║  ██║██║██║ ╚████║
+╚═════╝ ╚═╝ ╚════╝ ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝╚══════╝    ╚═╝     ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
+                                                                                                                                                                                    
+                                                                               
+
+                                        
+
+
+	/*
+	IMPLEMENTAR EL DIJKSTRA PASO A PASO SIN MORIR EN EL INTENTO
+	1 - hacer el pseudo del dijkstra
+	2 - hacer el pseudo del grafo a generar
+	3 - hacer el java para el grafo a generar, sin el dijkstra, si nos lo dan, mejor
+	4 - usar el java del dijkstra con los cosos del java del grafo
+	*/
+
+// ------------------------------------//
+		// PSEUDO DEL DIJKSTRA
+// ------------------------------------//
+
+
+	Dijkstra(G, s)
+para cada nodo v en G hacer
+	distancia[v] = ∞				// inicializo todas las distancias en infinito
+	predecesor[v] = indefinido		// aún no se conocen los caminos
+
+distancia[s] = 0					// la distancia al nodo origen es 0
+Q = conjunto de todos los nodos de G	// nodos aún no visitados
+
+mientras Q no esté vacío hacer
+	u = nodo en Q con menor distancia[u]	// selecciono el nodo más cercano
+	remover u de Q							// lo marco como visitado
+
+	para cada vecino v de u hacer
+		si v está en Q entonces
+			alt = distancia[u] + peso(u,v)	// distancia alternativa pasando por u
+			si alt < distancia[v] entonces
+				distancia[v] = alt			// actualizo la distancia más corta
+				predecesor[v] = u			// actualizo el camino más corto
+
+
+// ------------------------------------//
+
+				// ------------------------------------//
+		// JAVA DEL DIJKSTRA
+				// codigo generico del algoritmo
+// ------------------------------------//
+
+
+				import java.util.*;
+
+class Arista {
+    String destino;
+    int peso;
+
+    public Arista(String destino, int peso) {
+        this.destino = destino;
+        this.peso = peso;
+    }
+}
+
+class Grafo {
+    Map<String, List<Arista>> adyacencias = new HashMap<>();
+
+    public void agregarNodo(String nodo) {
+        adyacencias.putIfAbsent(nodo, new ArrayList<>());
+    }
+
+    public void agregarArista(String origen, String destino, int peso) {
+        adyacencias.putIfAbsent(origen, new ArrayList<>());
+        adyacencias.putIfAbsent(destino, new ArrayList<>()); // importante para nodos sin salida
+        adyacencias.get(origen).add(new Arista(destino, peso));
+    }
+
+    public Map<String, Integer> dijkstra(String origen) {
+        Map<String, Integer> distancias = new HashMap<>();
+        Map<String, String> predecesores = new HashMap<>();
+        PriorityQueue<NodoDistancia> cola = new PriorityQueue<>();
+        Set<String> visitados = new HashSet<>();
+
+        for (String nodo : adyacencias.keySet()) {
+            distancias.put(nodo, Integer.MAX_VALUE);
+        }
+        distancias.put(origen, 0);
+        cola.add(new NodoDistancia(origen, 0));
+
+        while (!cola.isEmpty()) {
+            NodoDistancia actual = cola.poll();
+            String nodoActual = actual.nodo;
+
+            if (visitados.contains(nodoActual)) continue;
+            visitados.add(nodoActual);
+
+            for (Arista arista : adyacencias.getOrDefault(nodoActual, new ArrayList<>())) {
+                String vecino = arista.destino;
+                int nuevaDistancia = distancias.get(nodoActual) + arista.peso;
+
+                if (nuevaDistancia < distancias.get(vecino)) {
+                    distancias.put(vecino, nuevaDistancia);
+                    predecesores.put(vecino, nodoActual);
+                    cola.add(new NodoDistancia(vecino, nuevaDistancia));
+                }
+            }
+        }
+
+        return distancias; // O devolvé también predecesores si querés reconstruir caminos
+    }
+
+    // Método opcional para reconstruir el camino mínimo
+    public List<String> reconstruirCamino(String origen, String destino, Map<String, String> predecesores) {
+        LinkedList<String> camino = new LinkedList<>();
+        String actual = destino;
+        while (actual != null && !actual.equals(origen)) {
+            camino.addFirst(actual);
+            actual = predecesores.get(actual);
+        }
+        if (actual == null) return Collections.emptyList(); // No hay camino
+        camino.addFirst(origen);
+        return camino;
+    }
+}
+
+class NodoDistancia implements Comparable<NodoDistancia> {
+    String nodo;
+    int distancia;
+
+    public NodoDistancia(String nodo, int distancia) {
+        this.nodo = nodo;
+        this.distancia = distancia;
+    }
+
+    @Override
+    public int compareTo(NodoDistancia otro) {
+        return Integer.compare(this.distancia, otro.distancia);
+    }
+}
+
+
+
+
+// ------------------------------------//
+		// PSEUDO PARA GENERAR EL GRAFO DE LAS CIUDADES
+// ------------------------------------//
+
+Grafo.Inicializar()
+	conjunto_nodos = [MVD, CAN, DUR, FLO, COL, PDE, RO, ART]
+	para cada nodo v en conjunto_nodos hacer
+		G[v] = lista vacía 				// inicializo la lista de adyacencia
+
+Grafo.AgregarAristas()
+	agregar (CAN, 30) a G[MVD]
+	agregar (DUR, 170) a G[CAN]
+	agregar (DUR, 60) a G[FLO]
+	agregar (MVD, 180) a G[COL]
+	agregar (PDE, 130) a G[MVD]
+	agregar (RO, 90) a G[PDE]
+	agregar (MVD, 270) a G[RO]
+	agregar (ART, 700) a G[MVD]
+	agregar (PDE, 90) a G[CAN]
+	agregar (COL, 200) a G[CAN]
+	agregar (ART, 500) a G[CAN]
+	agregar (RO, 400) a G[ART]
+
+
+
+G[MVD] = [(CAN, 30), (PDE, 130), (ART, 700)]
+G[CAN] = [(DUR, 170), (PDE, 90), (COL, 200), (ART, 500)]
+G[FLO] = [(DUR, 60)]
+G[COL] = [(MVD, 180)]
+G[PDE] = [(RO, 90)]
+G[RO]  = [(MVD, 270)]
+G[ART] = [(RO, 400)]
+
+
+
+// ------------------------------------//
+		// JAVA PARA GENERAR EL GRAFO DE LAS CIUDADES
+// esto todavia no tiene el dijkstra
+// ------------------------------------//
+
+import java.util.*;
+
+class Arista {
+    String destino;
+    int peso;
+
+    Arista(String destino, int peso) {
+        this.destino = destino;
+        this.peso = peso;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + destino + ", " + peso + ")";
+    }
+}
+
+public class Grafo {
+    Map<String, List<Arista>> adyacencias;
+
+    public Grafo() {
+        adyacencias = new HashMap<>();
+        inicializarNodos();
+        agregarAristas();
+    }
+
+    private void inicializarNodos() {
+        String[] nodos = {"MVD", "CAN", "DUR", "FLO", "COL", "PDE", "RO", "ART"};
+        for (String nodo : nodos) {
+            adyacencias.put(nodo, new ArrayList<>());
+        }
+    }
+
+    private void agregarAristas() {
+        adyacencias.get("MVD").add(new Arista("CAN", 30));
+        adyacencias.get("CAN").add(new Arista("DUR", 170));
+        adyacencias.get("FLO").add(new Arista("DUR", 60));
+        adyacencias.get("COL").add(new Arista("MVD", 180));
+        adyacencias.get("MVD").add(new Arista("PDE", 130));
+        adyacencias.get("PDE").add(new Arista("RO", 90));
+        adyacencias.get("RO").add(new Arista("MVD", 270));
+        adyacencias.get("MVD").add(new Arista("ART", 700));
+        adyacencias.get("CAN").add(new Arista("PDE", 90));
+        adyacencias.get("CAN").add(new Arista("COL", 200));
+        adyacencias.get("CAN").add(new Arista("ART", 500));
+        adyacencias.get("ART").add(new Arista("RO", 400));
+    }
+
+    public void imprimirGrafo() {
+        for (String nodo : adyacencias.keySet()) {
+            System.out.println(nodo + " -> " + adyacencias.get(nodo));
+        }
+    }
+
+    public static void main(String[] args) {
+        Grafo grafo = new Grafo();
+        grafo.imprimirGrafo();
+    }
+}
+
+
+// ------------------------------------//
+		// JAVA PARA IMPLEMENTAR EL DIJKSTRA AL GRAFO DE LAS CIUDADES
+// esto pertenece a la clase grafo, al final de la clase
+// ------------------------------------//
+
+
+public Map<String, Integer> dijkstra(String origen) {
+    Map<String, Integer> distancias = new HashMap<>();
+    Set<String> visitados = new HashSet<>();
+    PriorityQueue<NodoDistancia> cola = new PriorityQueue<>();
+
+    // Inicializar todas las distancias a infinito, excepto el origen
+    for (String nodo : adyacencias.keySet()) {
+        distancias.put(nodo, Integer.MAX_VALUE);
+    }
+    distancias.put(origen, 0);
+    cola.add(new NodoDistancia(origen, 0));
+
+    while (!cola.isEmpty()) {
+        NodoDistancia actual = cola.poll();
+        String nodoActual = actual.nodo;
+
+        if (visitados.contains(nodoActual)) continue;
+        visitados.add(nodoActual);
+
+        for (Arista arista : adyacencias.get(nodoActual)) {
+            String vecino = arista.destino;
+            int peso = arista.peso;
+            int nuevaDistancia = distancias.get(nodoActual) + peso;
+
+            if (nuevaDistancia < distancias.get(vecino)) {
+                distancias.put(vecino, nuevaDistancia);
+                cola.add(new NodoDistancia(vecino, nuevaDistancia));
+            }
+        }
+    }
+
+    return distancias;
+}
+
+// Clase auxiliar para la cola de prioridad
+class NodoDistancia implements Comparable<NodoDistancia> {
+    String nodo;
+    int distancia;
+
+    NodoDistancia(String nodo, int distancia) {
+        this.nodo = nodo;
+        this.distancia = distancia;
+    }
+
+    @Override
+    public int compareTo(NodoDistancia otro) {
+        return Integer.compare(this.distancia, otro.distancia);
+    }
+}
+
+// todavia queda implementar en el main
+
+
+// ------------------------------------//
+		// AL FINAL SE AGREGA EN EL MAIN LA LOGICA DEL DIJKSTRA
+// ------------------------------------//
+
+public static void main(String[] args) {
+    Grafo grafo = new Grafo();
+    grafo.imprimirGrafo();
+
+    System.out.println("\nDistancias mínimas desde MVD:");
+    Map<String, Integer> distancias = grafo.dijkstra("MVD");
+    for (String nodo : distancias.keySet()) {
+        System.out.println(nodo + ": " + distancias.get(nodo));
+    }
+}
+
