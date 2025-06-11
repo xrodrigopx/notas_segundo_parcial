@@ -35,6 +35,7 @@ open hashing
 
 
 dijkstra
+    orden V(^2)
     que hace
     Encuentra el camino más corto desde un nodo origen a todos los demás nodos de un grafo.
     Funciona solo con pesos no negativos.
@@ -90,6 +91,24 @@ busqueda en profundidad
     Resolver laberintos.
     Hacer ordenamiento topológico en grafos dirigidos acíclicos.
     Resolver problemas de backtracking (sudoku, rompecabezas, etc.).
+
+    Para encontrar todos los caminos de un punto A al B
+    caso base:
+        BPF(origen, destino, visitados, caminos, caminoTemporal)
+            - agregar "origen" a camino
+            - if origen es destino then
+                tmp = copiar (camino)
+                agregar "tmp" a caminos
+              else
+                agregar "origen" a Visitados // si no hacemos esto caemos en un loop si es un ciclo
+                for w pertenece adyacente(origen) do: // w son los vecinos
+                    if W no pertence a visitados then
+                        BPF(w, destino, visitados, caminos, caminoTemporal)
+                quitar "origen" de Visitados // quitar el nodo de origen despues del for de los visitados
+            quitar "origen" de camino // cuando terminamos de procesar todo quitamos el origen del camino porque no va a formar parte del camino
+
+
+Se puede representar un grafo dirigido como una lista siempre y cuando se respete el orden de las dependencas.
 
 
 
