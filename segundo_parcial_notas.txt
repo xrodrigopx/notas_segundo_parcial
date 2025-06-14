@@ -1,0 +1,142 @@
+Notas de Algoritmos - Rodrigo
+
+hashing
+    que es
+    Es una técnica para almacenar datos de forma eficiente, usando una función hash para convertir una clave (key) en una posición de almacenamiento (índice en un array).
+    Ideal para búsquedas rápidas, con tiempo promedio O(1).
+    Puede haber colisiones: dos claves distintas que generan el mismo índice.
+    Para resolver colisiones se usan métodos como:
+        Open hashing (encadenamiento)
+        Closed hashing (sondeo lineal, cuadrático, doble hash)
+    Búsqueda, inserción y eliminación:
+        Promedio: O(1)
+        Peor caso (todas las claves colisionan): O(n)
+
+    para que se usa
+    Para implementar tablas hash o diccionarios.
+    En estructuras como sets, maps, caches, y bases de datos.
+    En verificación de datos (checksums, firmas).
+    Para almacenar y buscar elementos de forma rápida (como en compiladores, sistemas de archivos, etc.).
+
+open hashing
+    que hace
+    Cada posición del array (hash table) contiene una lista enlazada (o estructura similar).
+    Si varias claves caen en la misma posición (colisión), se encadenan en esa lista.
+    No se necesita buscar una nueva posición para insertar, solo agregar al final de la lista.
+    inserción, búsqueda, eliminación:
+        Promedio: O(1 + α)
+        (donde α = n/m es el factor de carga: cantidad de elementos / cantidad de posiciones)
+        Peor caso: O(n) si todos caen en la misma lista
+
+    para que se usa
+    Cuando se quiere evitar la complejidad del sondeo y trabajar con estructuras dinámicas.
+    Es más flexible en caso de muchas colisiones.
+    Útil cuando no hay límite fijo de elementos (listas pueden crecer)
+
+dijkstra
+    orden V^2 sin heap / (V+E)logV con heap
+    que hace
+    Encuentra el camino más corto desde un nodo origen a todos los demás nodos de un grafo.
+    Funciona solo con pesos no negativos.
+    Utiliza una estructura de datos tipo cola de prioridad (como un heap o priority queue).
+    Es un algoritmo greedy (avanza eligiendo la opción óptima local).
+    Guarda las distancias mínimas conocidas desde el nodo origen y las va actualizando si encuentra un camino más corto.
+
+    sirve para
+    Para calcular rutas más cortas en mapas, redes o grafos (como Google Maps).
+    En redes de computadoras: enrutamiento de paquetes (como en protocolos OSPF).
+    En videojuegos: movimiento de personajes o enemigos hacia un objetivo.
+    Planificación de rutas, logística, sistemas de transporte, etc.
+
+floyd
+    que hace
+    Calcula todas las distancias mínimas entre todos los pares de nodos en un grafo.
+    Sirve para grafos con pesos negativos, pero sin ciclos negativos.
+    Es un algoritmo de programación dinámica.
+    Utiliza una matriz de distancias, que se va actualizando en cada paso.
+    Se basa en la idea de ir considerando todos los vértices como posibles intermediarios en los caminos.
+    tiene un orden de ejecucion O(V³)
+
+    sirve para
+    Cuando se necesita saber la distancia mínima entre todos los pares de nodos, no solo desde uno.
+    En análisis de redes, como determinar el nodo más central o el camino más eficiente entre cualquiera de dos puntos.
+    En grafos densos (muchas conexiones), o cuando no se necesita alta eficiencia en tiempo.
+    En planificación de rutas, tráfico, logística, análisis de caminos entre ciudades, etc.
+
+busqueda en profundidad (DFS)
+    detalles importantes
+    O(V+E)
+    avance: visitar un nodo no visitado
+    retroceso: visitar un nodo ya visitado
+    avance: si desde un nodo A marcado como visitado, estoy visitando un nodo B ya visitado y B es hijo de A
+    cruzado: con 3 nodos ABC donde A está marcado y es padre de BC, y B está marcado, quiero marcar C pasando por A
+
+    que hace
+    Explora un grafo o árbol profundamente, yendo por un camino hasta que no puede avanzar más, y luego retrocede (backtracking).
+    Utiliza una pila (stack) para llevar el control de los nodos a visitar.
+        En implementación recursiva, la pila es la pila del sistema.
+    Puede aplicarse a grafos dirigidos o no dirigidos, y a árboles.
+    Puede detectar ciclos, componentes conexas, y sirve para recorridos topológicos.
+    Es no óptimo para encontrar el camino más corto, pero visita todos los nodos alcanzables.
+
+    para que sirve 
+    Para recorrer grafos o árboles.
+    Encontrar componentes conexas.
+    Detectar ciclos en grafos dirigidos o no dirigidos.
+    Resolver laberintos.
+    Hacer ordenamiento topológico en grafos dirigidos acíclicos.
+    Resolver problemas de backtracking (sudoku, rompecabezas, etc.).
+
+busqueda en anchura (BFS)
+    que hace
+    Explora un grafo nivel por nivel, primero los vecinos del nodo inicial, luego los vecinos de esos vecinos, y así.
+    Usa una cola (queue) para mantener el orden de visita.
+    Encuentra el camino más corto en cantidad de aristas en grafos no ponderados.
+    Visita todos los nodos alcanzables.
+
+    detalles importantes
+    Orden de ejecución: O(V + E)
+    Se exploran primero los nodos a distancia 1, luego a distancia 2, etc.
+    Construye un árbol de expansión desde el nodo origen.
+
+    para que sirve
+    Encontrar caminos mínimos en grafos no ponderados.
+    Verificar si un grafo es conexo.
+    Calcular distancias mínimas.
+    Resolver problemas como:
+      Nivel mínimo en un laberinto
+      Encontrar la menor cantidad de movimientos
+      Redes de comunicación o rutas más cortas en mapas
+
+kruskal
+    que hace
+    Encuentra el árbol generador mínimo (MST) en un grafo ponderado.
+    Ordena las aristas por peso y las va agregando sin formar ciclos.
+    Usa estructura de conjuntos disjuntos (union-find).
+    Es un algoritmo greedy.
+
+    orden
+    O(m log m), donde m es la cantidad de aristas
+
+    para que sirve
+    Construcción de redes de costo mínimo.
+    Conexiones más económicas.
+    Planificación de rutas.
+    Agrupamiento jerárquico (clustering).
+    Mejor en grafos dispersos.
+
+prim
+    que hace
+    También busca el árbol generador mínimo.
+    Empieza en un nodo cualquiera y va expandiendo el árbol agregando la arista más barata hacia un nodo no visitado.
+    Usa una cola de prioridad.
+    Es greedy, como Kruskal.
+
+    orden
+    O(m log n), donde m es la cantidad de aristas y n de vértices
+
+    para que sirve
+    Planificación de redes desde un nodo inicial.
+    Instalación de fibra óptica desde un punto.
+    Útil en grafos densos.
+    Aplicaciones similares a Kruskal, pero diferente estrategia.

@@ -1,0 +1,78 @@
+# Pseudocódigos - Segundo Parcial
+
+# DFS (Búsqueda en profundidad - recursiva)
+# Recorre el grafo yendo lo más profundo posible antes de retroceder
+DFS(nodo):
+    marcar nodo como visitado
+    para cada vecino en nodo.adyacentes:
+        si vecino no está visitado:
+            DFS(vecino)
+
+# BFS (Búsqueda en anchura)
+# Recorre el grafo por niveles desde el nodo inicial usando una cola
+BFS(nodo_inicio):
+    crear cola vacía
+    marcar nodo_inicio como visitado
+    encolar nodo_inicio
+    mientras la cola no esté vacía:
+        nodo = desencolar
+        para cada vecino en nodo.adyacentes:
+            si vecino no está visitado:
+                marcar vecino como visitado
+                encolar vecino
+
+# Dijkstra
+# Calcula las distancias mínimas desde el nodo origen al resto (sin pesos negativos)
+Dijkstra(origen):
+    para cada nodo:
+        distancia[nodo] = infinito
+    distancia[origen] = 0
+    crear cola de prioridad con (0, origen)
+    mientras la cola no esté vacía:
+        (dist, nodo) = extraer mínimo
+        para cada vecino en nodo.adyacentes:
+            si distancia[nodo] + peso < distancia[vecino]:
+                distancia[vecino] = distancia[nodo] + peso
+                agregar (distancia[vecino], vecino) a la cola
+
+# Floyd-Warshall
+# Calcula la distancia mínima entre todos los pares de nodos usando programación dinámica
+Floyd(grafo):
+    para cada par (i, j):
+        si i == j: dist[i][j] = 0
+        si existe arista (i, j): dist[i][j] = peso(i, j)
+        si no: dist[i][j] = infinito
+    para cada k en vértices:
+        para cada i en vértices:
+            para cada j en vértices:
+                si dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+
+# Kruskal
+# Construye el árbol de expansión mínima eligiendo las aristas más livianas que no formen ciclos
+Kruskal(grafo):
+    crear conjunto disjunto para cada nodo
+    lista_aristas = aristas del grafo ordenadas por peso
+    MST = conjunto vacío
+    para cada arista (u, v) en lista_aristas:
+        si find(u) != find(v):
+            agregar (u, v) a MST
+            union(u, v)
+    retornar MST
+
+# Prim
+# Genera el árbol de expansión mínima arrancando desde un nodo y agregando aristas más baratas
+Prim(origen):
+    para cada nodo:
+        distancia[nodo] = infinito
+    distancia[origen] = 0
+    crear cola de prioridad con (0, origen)
+    MST = conjunto vacío
+    mientras la cola no esté vacía:
+        (peso, nodo) = extraer mínimo
+        si nodo no está en MST:
+            agregar nodo a MST
+            para cada vecino en nodo.adyacentes:
+                si vecino no está en MST y peso(arista) < distancia[vecino]:
+                    distancia[vecino] = peso(arista)
+                    agregar (distancia[vecino], vecino) a la cola
