@@ -4,7 +4,7 @@ Que tiene cada documento:
 	- tiene irat del semestre pasado con las respuestas correctas
 
 - segundo_parcial_notas.txt
-	- indica los algoritmos tentativos con datos importantes como que hacen, para que sirven, posibles situaciones de uso, tiempo de ejecucuon, etc.
+	- indica los algoritmos tentativos con datos importantes como que hacen, para que sirven, posibles situaciones de uso, tiempo de ejecucuión, etc.
 	
 
 - segundo_parcial_pseudos.txt
