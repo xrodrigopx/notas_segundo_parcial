@@ -1,4 +1,4 @@
-Disclaimer: no recomiendo usar esto, pero si de algo te sirve puedes imprimirlo para secar tus lágrimas. Esta materia está toda mal hecha, saludos.
+Disclaimer: no recomiendo usar esto, pero si de algo te sirve puedes imprimirlo para secar tus lágrimas. Esto no lo hice yo, lo hizo chatgpt con un montón de archivos y código de procedencia dudosa, así que no me agradezcas. Recuerda: no hay que reinventar la rueda y no tiene que ser tan difícil, saludos.
 
 ## Que tiene cada documento:
 
