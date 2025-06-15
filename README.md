@@ -1,3 +1,4 @@
+Disclaimer: no recomiendo usar esto, pero si de algo te sirve puedes imprimirlo para secar tus lágrimas. Esta materia está toda mal hecha, saludos.
 Que tiene cada documento:
 
 - segundo_parcial_irat.txt
