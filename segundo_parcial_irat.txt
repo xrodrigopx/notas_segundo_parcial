@@ -1,0 +1,169 @@
+Pregunta 1
+Correcta: Se punta 4.00 sobre 4.00
+Sean las claves 25, 48, 04, 16, 34 que se desean insertar en una tabla de hash de 11 posiciones (h0 = i0 + i1 cuadrado), las claves se insertan en ese orden, dado, izquiera a derecha, con una resolución de colisiones por sondéo cuadrático (h = h0 + i al cuadrado).
+a. la clave 34 se inserta en la posición 4, con dos colisiones
+b. la clave 48 se inserta en la posición 5, con una colisión
+c. la clave 34 se inserta en la posición 0, sin colisiones
+d. la clave 48 se inserta en la posición 6, con una colisión
+Correcta: b
+
+Pregunta 2
+Correcta: Se punta 4.00 sobre 4.00
+El orden de clasificación QUICKSORT presenta las siguientes características:
+a. el orden del tiempo de ejecución es logarítmico en el caso promedio y en el peor caso, no es estable, y la profundidad de las llamadas recursivas nunca excederá el logaritmo de la cantidad de datos de entrada
+b. el orden del tiempo de ejecución es logarítmico en el caso promedio y cuadrático en el peor caso, no es estable, y la profundidad de las llamadas recursivas podría llegar a ser igual a la cantidad de datos de entrada
+c. el orden del tiempo de ejecución es logarítmico en el caso promedio y lineal en el mejor caso, es estable, y la profundidad de las llamadas recursivas siempre será igual a la cantidad de datos de entrada
+d. el orden del tiempo de ejecución es logarítmico en el caso promedio y cuadrático en el peor caso, es estable, y la profundidad de las llamadas recursivas podría llegar a ser igual al cuadrado de la cantidad de datos de entrada
+Correcta: b
+
+Pregunta 5
+Correcta: Se punta 4.00 sobre 4.00
+Luego obtener el APO (la mayor clave en la raíz) usando el algoritmo de HEAPSORT al siguiente vector:
+295 516 327 119 106 514 121 043
+el conjunto queda:
+a. 516 226 514 327 106 119 121 043
+b. 043 226 514 119 106 327 121 043
+c. 043 226 514 119 106 327 121 516
+d. 516 514 226 119 106 327 121 043
+Correcta: b
+
+Pregunta 6
+Correcta: Se punta 4.00 sobre 4.00
+Si se aplica el algoritmo para hallar los puntos de articulación del grafo no dirigido a partir del vértice 'A' y tomando alfabéticamente el orden de los adyacentes, se concluye que:
+a. A es un punto de articulación porque su número bpf es menor que el número bpf del vértice al cual tiene un arco de retroceso
+b. B es un punto de articulación porque su número bpf es menor que el número bajo de su hijo
+c. A es identificado como punto de articulación porque como raíz del árbol tiene dos hijos
+d. F es un punto de articulación porque su número bajo es mayor que el bajo de su padre
+Correcta: b
+
+Pregunta 7
+Correcta: Se punta 4.00 sobre 4.00
+Un método de clasificación es estable cuando:
+a. Convierge naturalmente hasta obtener el conjunto ordenado
+b. Termina después de una cantidad predeterminada de operaciones
+c. Mantiene el orden relativo de elementos con claves iguales
+d. Mantiene el orden del tiempo de ejecución en todos los casos
+Correcta: c
+
+Pregunta 8
+Correcta: Se punta 4.00 sobre 4.00
+Si se construye un árbol abarcador en amplitud a partir del vértice "E" del siguiente GRAFO NO DIRIGIDO y tomando alfabéticamente orden de los adyacentes:
+a. el arco AE es de árbol y el arco GH es cruzado
+b. el arco EI es de árbol y el arco FI es cruzado
+c. el arco GH es cruzado y el arco HF es de árbol
+d. el arco EI es de avance y el arco FI es cruzado
+Correcta: a
+
+Pregunta 10
+Correcta: Se punta 4.00 sobre 4.00
+El CENTRO del siguiente grafo, puede ser:
+a. A
+b. B
+c. C
+Correcta: b
+
+Pregunta 11
+Correcta: Se punta 2.67 sobre 4.00
+Aplicar una búsqueda en profundidad a partir de un vértice x, permite:
+a. Saber cuáles son los vértices accesibles desde x
+b. Saber si el vértice x forma parte de un componente conexo
+c. Todas son correctas
+d. Obtener el camino desde x hasta los otros vértices
+Correcta: c
+
+Pregunta 13
+Correcta: Se punta 4.00 sobre 4.00
+La clasificación topológica requiere que el grafo dirigido sea:
+a. fuertemente conexo
+b. cerrado transitivamente
+c. acíclico
+d. de centro múltiple
+Correcta: c
+
+Pregunta 14
+Correcta: Se punta 4.00 sobre 4.00
+Al siguiente algoritmo le faltan dos sentencias, ellas son:
+método Floyd(C: array[1..n,1..n] of integer);
+var j, k: integer;
+Comienzo
+... Desde k = 1 hasta n hacer
+... Desde i = 1 hasta n hacer
+... SENTENCIAS QUE FALTAN
+... Fin Desde
+... Fin Desde
+Fin
+a. Si [C[i][k] < C[i][j]] entonces [C[i][j] = C[i][k] + C[k][j]]
+b. Si [C[k][j] < C[i][j]] entonces [C[i][j] = C[k][j] + costo[k]]
+c. Si [C[i][k] < C[k][j]] entonces [C[i][j] = k]
+d. Si [C[k][i] + C[k][j]] entonces [C[i][j] = C[k][i] + C[k][j]]
+Correcta: a
+
+Pregunta 15
+Correcta: Se punta 2.67 sobre 4.00
+La siguiente secuencia de estados del vector es producto de una clasificación por el algoritmo:
+07 15 23 11 19 03
+07 15 11 03 19 23
+07 11 03 15 19 23
+03 07 11 15 19 23
+a. Burbuja
+b. Quicksort (con el elemento del centro del rango como pivote)
+c. Inserción directa
+d. Selección directa
+Correcta: a
+
+Pregunta 16
+Correcta: Se punta 4.00 sobre 4.00
+Si se aplica el algoritmo de Dijkstra para hallar los caminos de menor costo a partir del vértice "C", luego de seleccionarse el vértice E:
+a. se pueden seleccionar indistintamente el D o el F, ya que sus distancias acumuladas son iguales
+b. debe seleccionarse necesariamente el D, ya que tiene la menor distancia acumulada
+c. se selecciona el F, ya que es el siguiente adyacente a C
+d. de acuerdo al criterio del orden alfabético, debe seleccionarse el B
+Correcta: a
+
+Pregunta 17
+Correcta: Se punta 4.00 sobre 4.00
+Un grafo no dirigido es aquel en el que:
+a. Todas son correctas
+b. Si se aplica una búsqueda en amplitud, se obtienen arcos de árbol y arcos cruzados
+c. Las aristas son un par no ordenado de nodos
+d. Si se aplica una búsqueda en profundidad, se obtienen arcos de árbol y arcos de retroceso
+Correcta: a
+
+Pregunta 18
+Correcta: Se punta 0.00 sobre 4.00
+Identifique las dos sentencias que le faltan al siguiente algoritmo:
+Comienzo
+<sentencia que falta>
+Mientras i ≤ N-1 hacer
+Aux ← V[j]
+j ← i + 1
+Mientras (j > 0) ∧ (clave < V[j-1]) hacer
+V[j] ← V[j-1]
+j ← j-1
+Fin Mientras
+<sentencia que falta>
+Fin Mientras
+Fin
+a. i = 2; V[1] = Aux
+b. V[j] = Aux; V[i] = V[i+1]
+c. V[j-1] = V[j]; Aux = V[j]
+d. i = i + 1; j = i - 1
+Correcta: a
+
+Pregunta 19
+Correcta: Se punta 4.00 sobre 4.00
+Se puede definir la excentricidad de un vértice como:
+a. el valor del camino más corto desde la raíz hasta él
+b. el menor de los caminos de mayor longitud que llegan a él desde todos los otros vértices del grafo
+c. el mayor de los caminos de menor longitud que llegan a él desde todos los otros vértices del grafo
+d. el valor del camino más largo desde la raíz hasta él
+Correcta: c
+
+Pregunta 20
+Correcta: Se punta 4.00 sobre 4.00
+Para verificar que un grafo dirigido tiene un ciclo, basta con realizar una bpf y:
+a. Si se encuentra un arco de avance que cierra decir hay un ciclo
+b. todas son correctas
+c. Si se encuentra un arco de retroceso quiere decir que hay un ciclo
+d. Si se encuentra un arco que apunta a un vértice y visitado, quiere decir que existe un ciclo
+Correcta: c
