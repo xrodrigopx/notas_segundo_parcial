@@ -138,4 +138,5 @@ int prim(int n, List<List<int[]>> grafo) {
     return pesoTotal;
 }
 
+
 }

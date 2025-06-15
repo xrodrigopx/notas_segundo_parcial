@@ -76,3 +76,72 @@ Prim(origen):
                 si vecino no está en MST y peso(arista) < distancia[vecino]:
                     distancia[vecino] = peso(arista)
                     agregar (distancia[vecino], vecino) a la cola
+
+
+# Pseudocódigos - Segundo Parcial - Algoritmos especiales
+
+# Dijkstra con aristas bloqueadas
+# Ignora las aristas que están temporalmente deshabilitadas
+Dijkstra_Bloqueadas(grafo, bloqueadas, origen):
+    para cada nodo:
+        distancia[nodo] = infinito
+    distancia[origen] = 0
+    crear cola de prioridad con (0, origen)
+    mientras la cola no esté vacía:
+        (dist, u) = extraer mínimo
+        para cada v en nodos:
+            si arista (u, v) no está bloqueada y existe:
+                si distancia[u] + peso < distancia[v]:
+                    distancia[v] = distancia[u] + peso
+                    agregar (distancia[v], v) a la cola
+
+# Dijkstra con parada obligatoria
+# Se debe pasar por un nodo intermedio v en el camino de s a t
+Dijkstra_Con_Parada(grafo, s, v, t):
+    dist1 = Dijkstra(grafo, s)   # de s a v
+    dist2 = Dijkstra(grafo, v)   # de v a t
+    retornar dist1[v] + dist2[t]
+
+# Floyd-Warshall con conteo de caminos mínimos
+# Cuenta cuántos caminos mínimos distintos existen entre cada par
+Floyd_Con_Conteo(grafo):
+    para cada par (i, j):
+        dist[i][j] = peso(i,j) o infinito
+        count[i][j] = 1 si hay arista, 0 si no
+    para cada k en nodos:
+        para cada i en nodos:
+            para cada j en nodos:
+                si dist[i][k] + dist[k][j] < dist[i][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+                    count[i][j] = count[i][k] * count[k][j]
+                si dist[i][k] + dist[k][j] == dist[i][j]:
+                    count[i][j] += count[i][k] * count[k][j]
+
+# Nodos críticos con Floyd
+# Detecta nodos cuya remoción incrementa alguna distancia mínima
+Nodos_Criticos(grafo):
+    base = Floyd(grafo)
+    criticos = []
+    para cada nodo en grafo:
+        crear copia del grafo quitando ese nodo
+        nueva = Floyd(copia)
+        si alguna distancia nueva > distancia base:
+            agregar nodo a criticos
+    retornar criticos
+
+# Impacto de quitar una arista (Floyd)
+# Evalúa el efecto de remover cada arista sobre las distancias mínimas
+Arista_Mayor_Impacto(grafo):
+    base = Floyd(grafo)
+    max_diferencia = 0
+    peor_arista = (-1, -1)
+    para cada arista (i, j) en grafo:
+        quitar temporalmente arista (i, j)
+        nueva = Floyd(grafo modificado)
+        para cada par (x, y):
+            diferencia = nueva[x][y] - base[x][y]
+            si diferencia > max_diferencia:
+                max_diferencia = diferencia
+                peor_arista = (i, j)
+        restaurar arista (i, j)
+    retornar peor_arista, max_diferencia
