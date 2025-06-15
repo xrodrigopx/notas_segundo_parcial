@@ -1,4 +1,4 @@
-Notas de Algoritmos - Rodrigo
+
 
 hashing
     que es
