@@ -1,89 +1,134 @@
-Pregunta 1: Una empresa que tiene sucursales en 280 ciudades de varios países necesita conectarlas mediante un servicio de transporte propio con el mínimo costo posible. Usted propone utilizar el algoritmo de PRIM pero le responden que no lo pueden hacer porque llevaría demasiado debido a que para encontrar el AAM es necesario correr el algoritmo 1 vez por cada vértice y evaluar los árboles resultantes para encontrar el de menor costo. Usted contra-argumenta diciendo:
-- b. Sin importar el vértice de comienzo, siempre se va a obtener el árbol abarcador de costo mínimo. (Correcta)
-- a. La elección del vértice de comienzo determina el AAM que se va a obtener, por lo tanto dependiendo de qué vértice elegimos el costo que tendrá el árbol que encontrearemos. Sin embargo, sí comenzamos por el vértice que tiene la ruta con menor costo asociada, siempre seguiremos de encotraremos el menor costo que tenga.
-- c. Tiene razón, el costo del árbol que se obtenga con el algoritmo de PRIM depende del vértice de comienzo, por ello es necesario aplicar un algoritmo independiente del vértice origen, por ejemplo Kruskal.
-- d. Dada la cantidad de vértices, en este caso se recomienda hallar todos los caminos posibles entre el origen y el destino, y seleccionar el de menor costo.
+Pregunta 1
+El siguiente esbozo del algoritmo de PRIM para obtener un árbol abarcador de costo mínimo está incompleto. La sentencia que falta es:
+Método Prim (conjunto de aristas T);
+U: conjunto de vértices;
+u, v: vértice;
 
-Pregunta 2: En un grafo no dirigido conexo:
-- b. Al aplicar una búsqueda en amplitud desde cualquier vértice se generarán solamente arcos de árbol y arcos cruzados. (Correcta)
-- a. El algoritmo de Floyd puede ser aplicado para obtener el árbol abarcador de costo mínimo.
-- c. Una búsqueda en amplitud puede no llegar a visitar todos los vértices del grafo.
-- d. El algoritmo de Dijkstra puede ser aplicado para obtener los puntos de articulación.
+COMIENZO
+T.Vaciar;
+U.Agregar({});
 
-Pregunta 3: El orden del tiempo de ejecución al recorrer en amplitud un grafo con una cantidad V de vértices y A de aristas, es:
-- c. Directamente proporcional a la cantidad de aristas del grafo. (Correcta)
-- a. Directamente proporcional a la cantidad de nodos del grafo.
-- b. Sí el recorrido se implementa en forma recursiva, será de orden exponencial.
-- d. Directamente proporcional al cuadrado de la cantidad de aristas del grafo.
+MIENTRAS U <> v hacer
+sentencia que falta
+T.agregar(u,v);
+U.agregar(v);
 
-Pregunta 4: Para representar un grafo no dirigido por medio de listas de adyacencias,
-- c. se necesitarán dos adyacencias por cada arista. (Correcta)
-- a. si N es la cantidad de vértices, harán falta N-1 adyacencias.
-- b. será suficiente una adyacencia por cada dos aristas.
-- d. habrá una adyacencia por arista.
+FIN MIENTRAS
+FIN;
 
-Pregunta 5: Un árbol libre presenta las siguientes propiedades:
-- c. sí se agrega una arista, se formará un ciclo. (Correcta)
-- a. no tiene puntos de articulación.
-- b. todas son correctas.
-- d. al tener n >= 1 vértices, tiene n + 1 aristas.
+Seleccione una:
+a. elegir dos vértices u y v de costo mínimo tal que u está en U y v está en V-U; (correcto)
+b. elegir una arista (u,v) de costo mínimo tal que u está en U y v está en V-U;
+c. elegir un vértice v de costo mínimo tal que esté en U-V;
+d. elegir una arista (u,v) de costo mínimo tal que u está en U y v está en V;
 
-Pregunta 6: Un grafo no dirigido es aquel en que:
-- c. Los arcos son un par no ordenado de vértices. (Correcta)
-- a. Los vértices son un par no ordenado de aristas.
-- b. Los caminos salen de la raíz y se dirigen a una hoja.
-- d. Todos sus vértices son cabeza de arco.
+Pregunta 2
+La búsqueda en profundidad en un grafo no dirigido conexo
+Seleccione una:
+a. solamente generará arcos de árbol y arcos de retroceso (correcto)
+b. resulta de un orden del tiempo de ejecución superior al de la búsqueda en amplitud
+c. no puede realizarse, ya que solamente está definida para los grafos dirigidos
+d. solamente generará arcos de árbol y arcos cruzados
 
-Pregunta 7: Se dice que un grafo no dirigido G es conexo si
-- b. todos sus pares de vértices están conectados. (Correcta)
-- a. cada vértice tiene más de una arista incidente.
-- c. existe una arista desde cada vértice a cada uno de los otros vértices.
-- d. ninguna es correcta.
+Pregunta 3
+Al representar un grafo no dirigido por medio de matriz de adyacencias,
+Seleccione una:
+a. si A es la cantidad de aristas, hará falta un espacio de memoria proporcional a A al cuadrado.
+b. se necesitará el doble de la memoria que sería necesaria si el grafo fuera dirigido
+c. se puede usar la mitad de la memoria que sería necesaria si el grafo fuera dirigido
+d. se necesitará la misma memoria que sería necesaria si el grafo fuera dirigido (correcto)
 
-Pregunta 8: Un punto de articulación en un grafo no dirigido conexo es:
-- c. un vértice que sí se quita, el grafo se desconecta en dos o más partes. (Correcta)
-- a. un arco que sí se agrega se forma un ciclo.
-- b. un vértice desde el cual se puede acceder a todos los otros vértices del grafo.
-- d. un arco que sí se quita, el grafo se desconecta en dos o más partes.
+Pregunta 4
+En el grafo de la figura
+Seleccione una:
+a. Hay tres puntos de articulación
+b. Hay un punto de articulación
+c. No existen puntos de articulación (correcto)
+d. Hay dos puntos de articulación
 
-Pregunta 9: Un árbol abarcador de costo mínimo está definido como:
-- c. Un árbol libre en el que la suma de los costos de las aristas es mínima. (Correcta)
-- a. Aquel que para hallarlo, se sabe que sus hijos también son de costo mínimo.
-- b. Un árbol, de todos los posibles, que tiene menor longitud de trayectoria ponderada promedio.
-- d. Un grafo en el que no se registran arcos ni cruzados ni de retroceso.
+Pregunta 5
+Dados dos vértices u y v de un grafo no dirigido G, para decir que u y v están conectados, es necesario que exista:
+a. un camino de u a v (correcto)
+b. más de un camino de u a v
+c. un ciclo que involucre a u y v
+d. el arco (u,v)
 
-Pregunta 10: El algoritmo de búsqueda en amplitud en un grafo no dirigido conexo de N vértices y A aristas a partir de cierto vértice v,
-- b. visita primero todos los adyacentes de v. (Correcta)
-- a. asegura que se seleccionan exactamente N-1 aristas.
-- c. se basa en conectar los vértices ninguno de los cuales es antecesor del otro.
-- d. se basa en ir colocando en una pila cada uno de los vértices visitados.
+Pregunta 6
+Para representar grafos no dirigidos se pueden emplear también los métodos de representación de grafos dirigidos. Si el grafo no dirigido se representa mediante:
+a. matriz de adyacencias, el orden del tiempo de ejecución para saber si existe una arista será el doble que para un grafo dirigido
+b. listas de adyacencias, para almacenar las aristas se necesitará el doble de espacio de memoria que para un grafo dirigido
+c. matriz de adyacencias, para almacenar las aristas se necesitará el doble de espacio de memoria que para un grafo dirigido (correcto)
+d. listas de adyacencias, el orden del tiempo de ejecución para saber si existe una arista será el doble que para un grafo dirigido
 
-Pregunta 11: En el grafo de la figura
-- a. Hay dos puntos de articulación. (Correcta)
-- b. Hay un punto de articulación.
-- c. Hay tres puntos de articulación.
-- d. No existen puntos de articulación.
+Pregunta 7
+En un grafo no dirigido el problema de encontrar los puntos de articulación se resuelve mediante un algoritmo basado:
+a. Prim o Kruskal
+b. una búsqueda en profundidad (correcto)
+c. búsqueda en amplitud
+d. una búsqueda en amplitud
 
-Pregunta 12: El algoritmo de Prim:
-- d. En cada paso, localiza la arista de menor costo (u,v) que conecta U y V-U, y después agrega v, el vértice en V, a U. (Correcta)
-- a. En cada paso, localiza el vértice de mayor costo v, y después agrega (u,v) la arista que conecta a u y v.
-- b. En cada paso, localiza la arista de mayor costo (u,v) que conecta U y V-U, y después agrega v, el vértice en V, a U.
-- c. En cada paso, localiza el vértice de menor costo v, y después agrega (u,v) la arista que conecta a u y v.
+Pregunta 8
+Es una propiedad de un árbol libre:
+a. si un árbol libre tiene n vértices tendrá exactamente n aristas (con n mayor que cero)
+b. si se quita cualquier arista de un árbol libre, se agrega un ciclo
+c. si un árbol libre tiene n vértices tendrá exactamente n - 1 aristas (con n mayor que cero) (correcto)
+d. si se quita cualquier arista de un árbol libre, se quita un ciclo
 
-Pregunta 13: En un grafo no dirigido:
-- a. Existe como máximo una arista conectando cualesquiera dos vértices. (Correcta)
-- b. La introducción de una arista adicional ocasiona la aparición de un ciclo.
-- c. Dos vértices se llaman "consecutivos" si existe una arista que los conecta.
-- d. Existe como máximo un camino conectando cualesquiera dos vértices.
+Pregunta 9
+Al siguiente recorrido en amplitud le faltan dos sentencias, seleccione las que correspondan (TAristas aristas):
+COMIENZO
+TCola cola = nueva TCola
+this.visit
+cola.agregar(this)
+mientras <sentencias que faltan> hacer
+v = cola.quitar
+para cada w adyacente a v hacer
+Si no visitado w entonces
+w.visit
+aristas.agregar(v,w)
+<sentencias que faltan>
+finsi
+fin para
+fin mientras
+FIN
+a. cola != aristas
+v
+wbea(aristas)
+b. no (cola.vacia)
+v
+cola.agregar(w) (correcto)
 
-Pregunta 14: Un árbol abarcador de costo mínimo del grafo de la figura
-- c. Tendrá un costo de 15, independientemente del algoritmo que se use para obtenerlo. (Correcta)
-- a. Aplicando el algoritmo de Warshall, se obtiene un costo de 25
-- b. Tendrá un costo de 17 si se aplica el algoritmo de Kruskal
-- d. Contendrá las aristas (c,d) y (b,d)
+Pregunta 10
+Aplicando una búsqueda en amplitud comenzando por el vértice con etiqueta "d":
+a. se obtiene un árbol de altura 1
+b. la arista (f,h) será un arco de árbol (correcto)
+c. la arista (d,h) será un arco cruzado
+d. la arista (d,h) será un arco cruzado
 
-Pregunta 15: En un grafo no dirigido conexo:
-- b. un ciclo tendrá por lo menos longitud 3. (Correcta)
-- a. el recorrido aplicables la búsqueda en amplitud, ya que no admite la búsqueda en profundidad.
-- c. un punto de articulación es un vértice desde el cual se puede acceder a todos los otros vértices del grafo.
-- d. la raíz es un vértice que sí se quita, el grafo se desconecta en dos o más partes.
+Pregunta 12
+Un punto de articulación de un grafo no dirigido es un vértice tal que:
+a. aunque se elimine junto con todas las aristas incidentes sobre él, el componente sigue siendo conexo
+b. aunque se elimine junto con todas las aristas incidentes sobre él, el componente sigue siendo biconexo
+c. cuando se elimina junto con todas las aristas incidentes sobre él, se divide un componente conexo en dos o más partes (correcto)
+d. aunque se elimine junto con todas las aristas incidentes sobre él, se divide un componente conexo en dos o más grafos biconexos
+
+Pregunta 13
+La búsqueda en amplitud en un grafo no dirigido se usa, por ejemplo, para:
+a. obtener un árbol abarcador de costo mínimo
+b. obtener los puntos de articulación
+c. verificar si el grafo tiene ciclos (correcto)
+d. todas son correctas
+
+Pregunta 14
+Un punto de articulación de un grafo no dirigido es un vértice tal que:
+a. aunque se elimine junto con todas las aristas incidentes sobre él, el componente sigue siendo biconexo
+b. cuando se elimina junto con todas las aristas incidentes sobre él, se divide un componente conexo en dos o más partes (correcto)
+c. cuando se elimina junto con todas las aristas incidentes sobre él, se divide un componente conexo en dos o más grafos biconexos
+d. aunque se elimine junto con todas las aristas incidentes sobre él, el componente sigue siendo conexo
+
+Pregunta 15
+Un árbol abarcador de costo mínimo de un grafo no dirigido G es un árbol libre que conecta todos los vértices de G, y:
+a. la cantidad de ciclos es la mínima posible
+b. la suma de los costos de sus aristas es la mínima posible (correcto)
+c. la altura es la mínima posible
+d. la cantidad de puntos de articulación es la mínima posible
