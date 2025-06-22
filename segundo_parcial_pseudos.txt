@@ -8,6 +8,29 @@ DFS(nodo):
         si vecino no está visitado:
             DFS(vecino)
 
+# DFS_Modificado
+# Encuentra todos los caminos entre origen y destino sin permitir que un nodo de procesamiento se conecte directo a otro
+DFS_Modificado(grafo, actual, destino, visitado, camino, resultado):
+    camino.agregar(actual)
+    marcar actual como visitado
+
+    si actual == destino:
+        agregar copia(camino) a resultado
+    sino:
+        para cada vecino en grafo[actual]:
+            si vecino no está visitado y es_conexion_valida(actual, vecino):
+                DFS_Modificado(grafo, vecino, destino, visitado, camino, resultado)
+
+    desmarcar actual como visitado
+    quitar último nodo de camino
+
+# es_conexion_valida
+# Controla que no se conecten directamente dos nodos de procesamiento
+es_conexion_valida(nodo1, nodo2):
+    si tipo(nodo1) == "procesamiento" y tipo(nodo2) == "procesamiento":
+        retornar falso
+    retornar verdadero
+
 # BFS (Búsqueda en anchura)
 # Recorre el grafo por niveles desde el nodo inicial usando una cola
 BFS(nodo_inicio):
@@ -20,6 +43,25 @@ BFS(nodo_inicio):
             si vecino no está visitado:
                 marcar vecino como visitado
                 encolar vecino
+
+# conectados
+# Determina si existe conexión entre nodoX y nodoY usando BFS
+conectados(nodoX, nodoY):
+    si nodoX == nodoY:
+        retornar true
+    crear conjunto visitado
+    crear cola vacía
+    encolar nodoX
+    marcar nodoX como visitado
+    mientras la cola no esté vacía:
+        actual = desencolar
+        para cada vecino en actual.adyacentes:
+            si vecino no está visitado:
+                si vecino == nodoY:
+                    retornar true
+                marcar vecino como visitado
+                encolar vecino
+    retornar false
 
 # Dijkstra
 # Calcula las distancias mínimas desde el nodo origen al resto (sin pesos negativos)
@@ -77,6 +119,45 @@ Prim(origen):
                     distancia[vecino] = peso(arista)
                     agregar (distancia[vecino], vecino) a la cola
 
+# Insertion Sort
+# Ordena un arreglo in-place, eficiente si está casi ordenado
+InsertionSort(arreglo):
+    para i = 1 hasta longitud(arreglo) - 1:
+        clave = arreglo[i]
+        j = i - 1
+        mientras j >= 0 y arreglo[j] > clave:
+            arreglo[j + 1] = arreglo[j]
+            j = j - 1
+        arreglo[j + 1] = clave
+
+# Ordenamiento Topológico
+# Genera un orden válido de ejecución en grafos dirigidos acíclicos (DAG)
+TopologicalSort(grafo):
+    resultado = lista vacía
+    visitado = conjunto vacío
+    para cada nodo en grafo:
+        si nodo no está en visitado:
+            DFS_Topologico(nodo, visitado, resultado)
+    invertir(resultado)
+    retornar resultado
+
+DFS_Topologico(nodo, visitado, resultado):
+    marcar nodo como visitado
+    para cada vecino en nodo.adyacentes:
+        si vecino no está en visitado:
+            DFS_Topologico(vecino, visitado, resultado)
+    agregar nodo a resultado
+
+# ordenarDatos (InsertionSort descendente por campo medición)
+# Ordena in-place un arreglo de objetos TDato por medición descendente
+ordenarDatos(datos):
+    para i = 1 hasta longitud(datos) - 1:
+        clave = datos[i]
+        j = i - 1
+        mientras j >= 0 y datos[j].medición < clave.medición:
+            datos[j + 1] = datos[j]
+            j = j - 1
+        datos[j + 1] = clave
 
 # Pseudocódigos - Segundo Parcial - Algoritmos especiales
 
