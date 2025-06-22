@@ -105,4 +105,22 @@ public class MainTest {
         int pesoTotal = main.prim(4, grafo);
         assertEquals(6, pesoTotal); // 2 + 3 + 1 = 6
     }
+
+    @Test
+void testFind() {
+    int[] padre = {0, 1, 2, 3};
+    // Unión simulada
+    padre[1] = 0;
+    padre[2] = 1;
+    assertEquals(0, main.find(2, padre)); // find con compresión de camino
+}
+
+@Test
+void testHeapSortDesc() {
+    double[] arr = {3.0, 1.0, 4.0, 1.5};
+    main.heapSortDesc(arr);
+    // Debe quedar ordenado de mayor a menor
+    assertArrayEquals(new double[]{4.0, 3.0, 1.5, 1.0}, arr, 1e-9);
+}
+
 } 
