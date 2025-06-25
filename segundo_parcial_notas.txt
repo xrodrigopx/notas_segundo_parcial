@@ -139,3 +139,38 @@ prim
     Instalación de fibra óptica desde un punto.  
     Útil en grafos densos.  
     Aplicaciones similares a Kruskal, pero diferente estrategia.
+
+
+inserción directa  
+    que hace  
+    Ordena un arreglo comparando cada elemento con los anteriores e insertándolo en la posición correcta.  
+    Es eficiente si el arreglo ya está parcialmente ordenado.  
+    Es un algoritmo in-place (no usa memoria adicional significativa).  
+    Similar a ordenar cartas en la mano: cada nueva carta se inserta donde corresponde.  
+
+    complejidad  
+        Mejor caso (ya ordenado): O(n)  
+        Promedio y peor caso: O(n²)  
+
+    para que sirve  
+    Ordenar pequeños conjuntos de datos.  
+    Casos donde los datos ya están casi ordenados.  
+    Como parte de algoritmos híbridos (ej. Timsort). 
+
+
+shellsort
+    que hace
+    Ordena un arreglo utilizando una secuencia de incrementos (gaps) que permite comparar y mover elementos que están lejos entre sí.
+    Es una mejora del algoritmo de inserción directa, optimizando el número de movimientos.
+    Reduce el salto progresivamente hasta llegar a 1, donde termina como una inserción directa.
+
+    orden
+    Depende de la secuencia de gaps usada.
+    En general, mejor que O(n²); por ejemplo, con la secuencia de Hibbard o Sedgewick se logra
+    un orden cercano a O(n log² n) o incluso O(n^3/2).
+
+    para que sirve
+    Ordenamiento eficiente para arreglos medianos.
+    Útil cuando no se quiere usar estructuras adicionales (es in-place).
+    Ideal en sistemas con poca memoria.
+    A veces se utiliza como parte de otros algoritmos o en ordenamientos híbridos.
