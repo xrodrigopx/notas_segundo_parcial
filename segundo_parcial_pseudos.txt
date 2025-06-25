@@ -262,3 +262,6 @@ BubbleSort(A[0..n-1])
             si A[j] > A[j + 1] entonces
                 intercambiar A[j] con A[j + 1]
 
+
+
+
