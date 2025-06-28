@@ -141,7 +141,7 @@ prim
     Aplicaciones similares a Kruskal, pero diferente estrategia.
 
 
-heapsort
+heapsort > si te pide neficiencia y que corra rapido
     que hace
     Ordena un arreglo construyendo un montículo (heap) máximo.
     Extrae repetidamente el elemento mayor (la raíz del heap) y lo coloca al final del arreglo.
@@ -156,7 +156,7 @@ heapsort
     A veces se usa en planificación de tareas o simulaciones donde se necesita mantener una cola de prioridades.
 
 
-bubblesort
+bubblesort > si no te importa cuanto tiempo va a correr
     que hace
     Compara elementos adyacentes y los intercambia si están en el orden incorrecto.
     Repite el proceso varias veces hasta que no se hagan más intercambios.
