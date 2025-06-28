@@ -123,4 +123,22 @@ void testHeapSortDesc() {
     assertArrayEquals(new double[]{4.0, 3.0, 1.5, 1.0}, arr, 1e-9);
 }
 
+// test para heapsort
+@Test
+void testHeapSortGenerico() {
+    double[] arr = {3.0, 1.0, 4.0, 1.5};
+    main.heapSortGenerico(arr);
+    // Debe quedar ordenado de mayor a menor
+    assertArrayEquals(new double[]{4.0, 3.0, 1.5, 1.0}, arr, 1e-9);
+}
+
+// test para bubblesort 
+@Test
+void testBubbleSort() {
+    double[] arr = {3.0, 1.0, 4.0, 1.5};
+    main.bubbleSort(arr);
+    // Debe quedar ordenado de mayor a menor
+    assertArrayEquals(new double[]{4.0, 3.0, 1.5, 1.0}, arr, 1e-9);
+}
+
 } 

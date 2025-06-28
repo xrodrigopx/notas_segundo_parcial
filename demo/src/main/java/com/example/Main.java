@@ -156,4 +156,36 @@ public class Main {
             heapify(arr, i, 0);
         }
     }
+
+    // bubblesort
+    void bubbleSort(double[] arr) {
+        int n = arr.length;
+        boolean swapped;
+        do {
+            swapped = false;
+            for (int i = 1; i < n; i++) {
+                if (arr[i - 1] < arr[i]) {
+                    double temp = arr[i - 1];
+                    arr[i - 1] = arr[i];
+                    arr[i] = temp;
+                    swapped = true;
+                }
+            }
+            n--;
+        } while (swapped);
+    }
+
+    // heapsort generico
+    void heapSortGenerico(double[] arr) {
+        int n = arr.length;
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i);
+        }
+        for (int i = n - 1; i > 0; i--) {
+            double temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            heapify(arr, i, 0);
+        }
+    }
 }
