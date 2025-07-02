@@ -262,6 +262,39 @@ BubbleSort(A[0..n-1])
             si A[j] > A[j + 1] entonces
                 intercambiar A[j] con A[j + 1]
 
+## Kruskal con prioridad
+Algoritmo construirRedMinimaPrioritaria(grafo)
+Entrada: 
+    grafo: conjunto de ciudades y rutas
+        - Cada ruta tiene: origen, destino, costo, prioridad (true/false)
+
+Salida:
+    red: conjunto de rutas seleccionadas que conectan todas las ciudades con costo mínimo
+
+1. rutas_prioritarias ← [r ∈ grafo.rutas donde r.prioridad = true]
+2. rutas_normales ← [r ∈ grafo.rutas donde r.prioridad = false]
+
+3. Ordenar rutas_prioritarias por costo ascendente
+4. Ordenar rutas_normales por costo ascendente
+
+5. caminos ← nueva instancia de TCaminos  // inicializa componentes disjuntos
+6. red ← lista vacía
+
+// Paso 1: usar todas las rutas con prioridad posibles
+7. Para cada ruta en rutas_prioritarias hacer
+       si NO caminos.conectados(ruta.origen, ruta.destino) entonces
+           caminos.conectar(ruta.origen, ruta.destino)
+           red.agregar(ruta)
+
+// Paso 2: completar la red con rutas normales
+8. Para cada ruta en rutas_normales hacer
+       si NO caminos.conectados(ruta.origen, ruta.destino) entonces
+           caminos.conectar(ruta.origen, ruta.destino)
+           red.agregar(ruta)
+
+9. retornar red
+
+
 
 
 

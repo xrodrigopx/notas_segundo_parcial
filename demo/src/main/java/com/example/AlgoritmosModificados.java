@@ -142,7 +142,7 @@ public class AlgoritmosModificados {
 
     // Arista con mayor impacto (cuál al eliminar incrementa más las distancias mínimas)
     public static int[] aristaMayorImpacto(int[][] grafo) {
-        int n = grafo.length;
+        int n = grafo.length;                                   
         int[][] base = floyd(grafo);
         int maxDif = 0;
         int[] peorArista = {-1, -1};
